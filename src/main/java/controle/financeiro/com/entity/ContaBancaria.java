@@ -56,4 +56,9 @@ public class ContaBancaria {
     @OneToMany(mappedBy = "contaBancaria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     //@Schema
     private List<SaldoBancario> saldosBancarios;
+
+    @PrePersist
+    protected void onCreate() {
+        this.dataCriacao = LocalDateTime.now();
+    }
 }

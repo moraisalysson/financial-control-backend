@@ -4,7 +4,11 @@ package controle.financeiro.com.entity.mapper;
 import controle.financeiro.com.entity.ContaBancaria;
 import controle.financeiro.com.to.ContaBancariaTO;
 import controle.financeiro.com.to.form.ContaBancariaForm;
+import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
+@Component
 public class ContaBancariaMapper {
 
     public ContaBancariaTO toTO(ContaBancaria contaBancaria) {
