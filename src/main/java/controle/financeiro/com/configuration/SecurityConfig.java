@@ -35,6 +35,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/conta_bancaria/create").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/conta_bancaria/list").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/categoria_transacao/create").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/categoria_transacao/list").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -45,13 +47,13 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:4200")); // Domínio do frontend
+        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); // Aplica o CORS a todas as rotas
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 
