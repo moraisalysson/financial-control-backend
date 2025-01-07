@@ -3,6 +3,8 @@ package controle.financeiro.com.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -14,7 +16,8 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaldoBancario {
+public class SaldoBancario implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -35,4 +38,9 @@ public class SaldoBancario {
     @Column(name = "DATA_ATUALIZACAO")
     //@Schema
     private LocalDateTime dataAtualizacao;
+
+    @PrePersist
+    protected void onCreate() {
+        this.dataCriacao = LocalDateTime.now();
+    }
 }

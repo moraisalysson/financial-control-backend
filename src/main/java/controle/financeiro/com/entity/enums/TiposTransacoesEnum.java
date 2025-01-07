@@ -2,14 +2,14 @@ package controle.financeiro.com.entity.enums;
 
 import java.util.stream.Stream;
 
-public enum TiposTrancacoesEnum {
-    PAGAMENTO(0),
-    RECEBIMENTO(1),
-    ESTORNO(2);
+public enum TiposTransacoesEnum {
+    DESPESA(0),
+    RECEITA(1),
+    TRANSFERENCIA(2);
 
     private final Integer chave;
 
-    TiposTrancacoesEnum(Integer chave) {
+    TiposTransacoesEnum(Integer chave) {
         this.chave = chave;
     }
 
@@ -17,7 +17,7 @@ public enum TiposTrancacoesEnum {
         return this.chave;
     }
 
-    public static TiposTrancacoesEnum getByChave(Integer chave) {
+    public static TiposTransacoesEnum getByChave(Integer chave) {
         return Stream.of(values()).filter(e -> e.getChave().equals(chave)).findFirst().orElse(null);
     }
 }
